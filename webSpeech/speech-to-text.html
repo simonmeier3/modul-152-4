@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Speech</title>
+    <link rel="stylesheet" type="text/css" href="speech-to-text.css">
+</head>
+<body>
+
+<div id="wrapper">
+    <h1 id="title">Speech Recognition</h1>
+    <div id="content">
+        <div id="result">
+            <div id="text">
+                <p>Recognized Text:</p>
+            </div>
+            <label for="textResult"></label><textarea id="textResult" name="result" rows="6" cols="70" readonly></textarea>
+        </div>
+        <div id="buttons">
+            <button id="startButton" onclick="start()">Start</button>
+            <button id="stopButton" onclick="end()">Stop</button>
+        </div>
+        <div id="select">
+            <label>Select language:</label>
+            <select id="language" name="language">
+                <option value="german">German</option>
+                <option value="english">English</option>
+                <option value="french">French</option>
+                <option value="italian">Italian</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = false;
+
+    recognition.onstart = function () {
+        console.log("Started");
+    }
+
+    recognition.onresult = function (event) {
+        console.log(event);
+        const result = document.getElementById('textResult');
+        result.innerText = event.results[0][0].transcript;
+        setTimeout(function (){
+            const result = document.getElementById('textResult');
+            result.innerText = "";
+        }, 5000);
+    }
+
+    recognition.onerror = function (err) {
+
+    }
+    recognition.onend = function () {
+        console.log("Ended");
+    }
+
+    function start() {
+        const language = document.getElementById('language').value;
+        if (language === "german"){
+            recognition.lang = "de-DE";
+        }
+        if (language === "english"){
+            recognition.lang = "en-US";
+        }
+        if (language === "french"){
+            recognition.lang = "fr-FR";
+        }
+        if (language === "italian"){
+            recognition.lang = "it-IT";
+        }
+        recognition.start();
+    }
+
+    function end() {
+        recognition.stop();
+    }
+
+
+</script>
+
+</body>
+</html>
