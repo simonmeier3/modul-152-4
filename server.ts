@@ -2,6 +2,7 @@ import express = require('express');
 import multer = require('multer');
 
 const app = express();
+const herokuUrl = "https://immense-eyrie-45228.herokuapp.com/uploads/";
 let audioFile;
 let vttFile;
 
@@ -23,8 +24,8 @@ app.post('/api/audio', upload.fields([{name: 'audio', maxCount: 1}, {name: 'vtt'
 
     res.json({
         data: {
-            audio: "" + audioFile,
-            vtt: "" + vttFile
+            audio: herokuUrl + audioFile,
+            vtt: herokuUrl + vttFile
         }
     })
 })
