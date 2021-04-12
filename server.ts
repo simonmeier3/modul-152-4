@@ -29,4 +29,6 @@ app.post('/api/audio', upload.fields([{name: 'audio', maxCount: 1}, {name: 'vtt'
     })
 })
 
+app.use(express.static('uploads'));
+
 app.listen(process.env.PORT || 3000);
