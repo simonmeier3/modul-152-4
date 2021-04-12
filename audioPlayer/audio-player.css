@@ -1,0 +1,13 @@
+body{
+    background-color: #EAE7DC;
+}
+#title{
+    text-align: center;
+    margin-top: 20%;
+    font-family: Arial, serif;
+
+}
+#audioPlayer{
+    text-align: center;
+    margin-top: 3%;
+}
