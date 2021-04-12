@@ -2,7 +2,7 @@ import express = require('express');
 import multer = require('multer');
 
 const app = express();
-const herokuUrl = "https://immense-eyrie-45228.herokuapp.com/uploads/";
+const herokuUrl = "https://immense-eyrie-45228.herokuapp.com/";
 let audioFile;
 let vttFile;
 
